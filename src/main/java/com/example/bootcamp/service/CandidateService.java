@@ -1,6 +1,6 @@
 package com.example.bootcamp.service;
 
-import com.example.bootcamp.CandidateStatus;
+import com.example.bootcamp.util.CandidateStatus;
 import com.example.bootcamp.dto.CandidateDTO;
 import com.example.bootcamp.exception.RoleMismatchException;
 import com.example.bootcamp.integration.T1Client;

@@ -1,4 +1,4 @@
-package com.example.bootcamp;
+package com.example.bootcamp.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

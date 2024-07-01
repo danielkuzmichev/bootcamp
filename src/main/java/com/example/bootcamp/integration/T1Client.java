@@ -5,6 +5,7 @@ import com.example.bootcamp.dto.RolesDTO;
 import com.example.bootcamp.dto.StatusDTO;
 import com.example.bootcamp.dto.CandidateDTO;
 import com.example.bootcamp.exception.RemoteServiceException;
+import io.netty.handler.timeout.ReadTimeoutException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -42,7 +43,10 @@ public class T1Client {
             .onStatus(
                 HttpStatusCode::isError,
                 clientResponse -> {
-                    throw new RemoteServiceException();
+                    switch (clientResponse.statusCode().value()) {
+                        case 504: throw new ReadTimeoutException();
+                        default: throw new RemoteServiceException();
+                    }
                 }
             )
             .bodyToMono(String.class)
